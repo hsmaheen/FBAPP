@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <!-- CSS Begins       -->
+        <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="css/login.css" type="text/css">
+        <link rel="stylesheet" href="css/cart.css" type="text/css">
+        <!--   End of CSS            -->
+        <!----------Scripts--------->
+        <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/handlebars-v1.3.0.js" type="text/javascript"></script>
+        <script src="js/jquery.cookie.js" type="text/javascript"></script>
+        <script src="js/handlebars-v1.3.0.js" type="text/javascript"></script>
+        <script src="js/custom.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.js" type="text/javascript"></script>
+        
+        <!-----End of Scripts---->
+
+        <script>
+            $(function()
+            {
+                var data = {"total": 0, "rows": []};
+                var totalCost = 0;
+                //---Getting itemws----//
+                $("#test").click(function()
+                {
+
+                    var promise = $.getJSON("fbapp/User/ptest");
+                    promise.done(function(result)
+                    {
+                        var product = result;
+                        includes("product_Tmpl", product, "#listp");
+                    });
+
+                });
+                //--- End of Getting itemws----//
+
+
+                //---Getting Cart---///
+                $('#cartcontent').datagrid({
+                    singleSelect: true
+                });
+                $("#confirm").click(function() {
+                    alert("Order Placed");
+                    $("#ca").find("tr:gt(0)").remove();
+                    var name = Null;
+                    var price = Null;
+                    var quantity = Null;
+                    data.rows.push({
+                        name: name,
+                        quantity: quantity,
+                        price: price,
+                        remove: Null
+                    });
+                    data.totalCost = 0;
+                    //                        $('#cartcontent').datagrid('loadData', data);
+                    //                        $('div.cart .total').html('Total: $' + totalCost);
+                });
+
+                $('.item').draggable({
+                    revert: true,
+                    proxy: 'clone',
+                    onStartDrag: function() {
+                        $(this).draggable('options').cursor = 'not-allowed';
+                        $(this).draggable('proxy').css('z-index', 10);
+                    },
+                    onStopDrag: function() {
+                        $(this).draggable('options').cursor = 'move';
+                    }
+                });
+                $('.cart').droppable({
+                    onDragEnter: function(e, source) {
+                        $(source).draggable('options').cursor = 'auto';
+                    },
+                    onDragLeave: function(e, source) {
+                        $(source).draggable('options').cursor = 'not-allowed';
+                    },
+                    onDrop: function(e, source) {
+                        var name = $(source).find('p:eq(0)').html();
+                        var price = $(source).find('p:eq(1)').html();
+                        addProduct(name, parseFloat(price.split('$')[1]));
+                    }
+                });
+
+
+                //---End of Getting Cart---///
+
+
+            });
+
+            ///---adiing stuff to cart--//
+            function addProduct(name, price) {
+                function add() {
+                    for (var i = 0; i < data.total; i++) {
+                        var row = data.rows[i];
+                        if (row.name === name) {
+                            row.quantity += 1;
+                            return;
+                        }
+                    }
+                    data.total += 1;
+                    data.rows.push({
+                        name: name,
+                        quantity: 1,
+                        price: price,
+                        remove: '<a href="#" class="remove" onclick="removeProduct(this, event)">Remove</a>'
+                    });
+                }
+                add();
+                totalCost += price;
+                $('#cartcontent').datagrid('loadData', data);
+                $('div.cart .total').html('Total: $' + totalCost);
+
+            }
+            function removeProduct(el, event) {
+                var tr = $(el).closest('tr');
+                var name = tr.find('td[field=name]').text();
+                var price = tr.find('td[field=price]').text();
+                var quantity = tr.find('td[field=quantity]').text();
+                for (var i = 0; i < data.total; i++) {
+                    var row = data.rows[i];
+                    if (row.name === name) {
+                        data.rows.splice(i, 1);
+                        data.total--;
+                        break;
+                    }
+                }
+                totalCost -= price * quantity;
+                $('#cartcontent').datagrid('loadData', data);
+                $('div.cart .total').html('Total: $' + totalCost);
+            }
+            ///---End of addiing stuff to cart--//          
+        </script>
+    </head>
+
+    <body>
+
+        <button type="submit" id="test">TEST</button>
+        <div id="listp">
+
+        </div>
+        <div class="cart">
+            <h1>Shopping Cart</h1>
+            <div style="background:#fff">
+                <table id="cartcontent" fitColumns="true" style="width:300px;height:auto;">
+                    <thead>
+                        <tr>
+                            <th field="name" width=140>Name</th> 
+                            <th field="quantity" width=60 align="right">Quantity</th>
+                            <th field="price" width=60 align="right">Price</th>
+                            <th field="remove" width=60 align="right">Remove</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <p class="total">Total: $0</p>
+            <h2>Drop here to add to cart</h2>
+            <div id="confirm">
+                <button>Place Order</button>
+            </div>
+        </div>
+    </body>
+</html>

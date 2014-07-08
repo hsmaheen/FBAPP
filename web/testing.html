@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Browse Items</title>
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width">
+        <link type="text/css" href="css/bootstrap.css" rel="stylesheet">
+        <link type="text/css" href="css/BasketStyle.css" rel="stylesheet">
+        
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+      <style>
+            .carousel{
+        padding:30px 80px;
+        }
+
+        </style>
+    </head>
+    <body>
+        <div class="bs-example">
+              <div class="navbar navbar-default navbar-fixed-top">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                    <a class="navbar-brand" href="#"><img src="images/brand_logo_inverse_small_v2.png" height="45"></a>
+                </div>
+                <div class="navbar-collapse collapse navbar-responsive-collapse">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="#" class="basket-nav">Home</a></li>
+                    <li><a href="#" class="basket-nav">Link</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle basket-nav" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Dropdown header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <form class="navbar-form navbar-left">
+                        <input type="text" class="form-control" placeholder="Search">
+                  </form>
+                  
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="btn-link">
+                            <a href="#myCartModal" data-toggle="modal" class="basket-nav">My Cart <span class="badge">2</span></a>
+                        </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle basket-nav" data-toggle="dropdown" > User Name <b class="caret"></b>&nbsp;</a>
+                      <ul class="dropdown-menu">
+                          <li>
+                              <div class="well-sm col-sm-12">
+                                  <div class="col-sm-12">Logged Username displayed here</div>
+                                  <div class="center-block">
+                                      <button class="btn-success col-sm-12" id="Logout">Logout</button>
+                                  </div>
+                              </div>
+                          </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div><!-- /.nav-collapse -->
+              </div><!-- /.navbar -->
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-12">
+                
+                    <div id="carousel-advert" class="carousel slide" data-ride="carousel">
+                        
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <header class="container">
+                                    <div class="jumbotron col-md-8">
+                                        <h1>Apple</h1>
+                                        <p class="lead" style="font-size: 0.7em">
+                                            Fresh, juicy and Healthy. Rich source of vitamin A. Hand Picked from hills of Queensland ranges.
+                                        </p>
+                                        <p class="lead" style="font-size: 1em">
+                                            <label id="SpecialPromoTxt">Special Promotion : </label>
+                                        </p>
+                                        
+                                        <button class="btn btn-info" style=" font-size: 0.7em">More</button>
+                                        <button class="btn btn-success" style=" font-size: 0.7em">Buy</button>
+                                    </div>
+                                    <div class="jumbotron col-md-4">
+                                        <img src="images/apple.png" class="img-rounded img-thumbnail pull-right" width="250">
+                                    </div>
+                                </header>
+                            </div>
+                            
+                            <div class="item">
+                                <header class="container">
+                                    <div class="jumbotron col-md-8">
+                                        <h1>Broccoli</h1>
+                                        <p class="lead" style="font-size: 0.7em">
+                                            Green nutrition. Rich source of vitamins. Reduces body fat and helps you to stay slim and sleek.
+                                        </p>
+                                        <p class="lead" style="font-size: 1em">
+                                            <label id="SpecialPromoTxt">Special Promotion : </label>
+                                        </p>
+                                        
+                                        <button class="btn btn-info" style=" font-size: 0.7em">More</button>
+                                        <button class="btn btn-success" style=" font-size: 0.7em">Buy</button>
+                                    </div>
+                                    <div class="jumbotron col-md-4">
+                                        <img src="images/broccoli.png" class="img-rounded img-thumbnail pull-right" width="250">
+                                    </div>
+                                </header>
+                            </div>
+                            
+                            <div class="item">
+                                <header class="container">
+                                    <div class="jumbotron col-md-8">
+                                        <h1>Lettuce</h1>
+                                        <p class="lead" style="font-size: 0.7em">
+                                            Good for digestion. Green nutrition. Rich source of vitamins. High fiber helps you stay active longer.
+                                        </p>
+                                        <p class="lead" style="font-size: 1em">
+                                            <label id="SpecialPromoTxt">Special Promotion : </label>
+                                        </p>
+                                        
+                                        <button class="btn btn-info" style=" font-size: 0.7em">More</button>
+                                        <button class="btn btn-success" style=" font-size: 0.7em">Buy</button>
+                                    </div>
+                                    <div class="jumbotron col-md-4">
+                                        <img src="images/lettuce.png" class="img-rounded img-thumbnail pull-right" width="250">
+                                    </div>
+                                </header>
+                        </div>
+                        </div>
+                        <ol class="carousel-indicators">
+                            <li class="active" data-target="#carousel-advert" data-slide-to="0"></li>
+                            <li data-target="#carousel-advert" data-slide-to="1"></li>
+                            <li data-target="#carousel-advert" data-slide-to="2"></li>
+                        </ol>
+                        
+                        <a class="carousel-control left" data-slide="prev" href="#carousel-advert">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        
+                        <a class="carousel-control right" data-slide="next" href="#carousel-advert">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                        
+                    </div>
+            </div>
+        </div>
+        
+        
+                    
+        <div class="well col-lg-12">
+            <div class="row">
+                <div class="col-lg-3">
+                    <!-----Start of listing--->
+                    <div class="thumbnail col-lg-8 col-lg-offset-2">
+                        <img src="images/broccoli.png" class="img-rounded img-thumbnail">
+                        <div class="caption">
+                        <h4>Broccoli</h4>
+                        <p class="lead" style="font-size: 0.7em">
+                            Green nutrition. Rich source of vitamins. Reduces body fat and helps you to stay slim and sleek.
+                        </p>
+                        <p align="right">
+                            <a href="#myModal" role="button" class="btn btn-info btn-sm" data-toggle="modal" style="font-size: 0.7em">More</a>
+                        </p>
+                        </div>
+                    </div>
+                    <!-----End of Listing---->
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="thumbnail col-lg-8 col-lg-offset-2">
+                        <img src="images/broccoli.png" class="img-rounded img-thumbnail">
+                        <div class="caption">
+                        <h4>Broccoli</h4>
+                        <p class="lead" style="font-size: 0.7em">
+                            Green nutrition. Rich source of vitamins. Reduces body fat and helps you to stay slim and sleek.
+                        </p>
+                        <p align="right">
+                            <a href="#myModal" role="button" class="btn btn-info btn-sm" data-toggle="modal" style="font-size: 0.7em">More</a>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                        
+            </div>
+        </div>
+            <!-- Order Info Modal Window -->
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Broccoli</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <img class="img-thumbnail" src="images/broccoli.png" width="200"><br>
+                            <label>Quantity Available : </label><input type="text" placeholder="10">
+                        </div>
+                        <div class="col-md-8">
+                            <p>Broccoli can provide you with some special cholesterol-lowering benefits if you will cook it by steaming. The fiber-related components in broccoli do a better job of binding together with bile acids in your digestive tract when they've been steamed. When this binding process takes place, it's easier for bile acids to be excreted, and the result is a lowering of your cholesterol levels. Raw broccoli still has cholesterol-lowering ability—just not as much.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <button class="btn btn-default">Subscribe</button>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="col-md-6 col-md-offset-1">
+                                <label>Quantity :</label>&nbsp;<input type="text" size="10" placeholder="Enter Amt">
+                            </div>
+                            <div class="col-md-5">
+                                <button class="btn btn-primary">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+            
+            <!-- Shopping Cart Modal Window -->
+    <div id="myCartModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">My Cart <span class="badge">2</span></h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="bs-example table-responsive">
+              <table class="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Item Name</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Item Price</th>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    <td>1</td>
+                    <td>Broccoli</td>
+                    <td>0.60</td>
+                    <td><input class="form-control" type="number" max="100" min="0"></td>
+                    <td><label>Dynamic Calc</label></td>
+                    <td><button class="btn-xs"><span class="glyphicon glyphicon-remove" style="color: #F04124"></span></button></td>
+                  </tr>
+                  <tr class="success">
+                    <td>2</td>
+                    <td>Apple</td>
+                    <td>1.10</td>
+                    <td><input class="form-control" type="number" max="100" min="0"></td>
+                    <td><label>Dynamic Calc</label></td>
+                    <td><button class="btn-xs"><span class="glyphicon glyphicon-remove" style="color: #F04124"></span></button></td>
+                  </tr>
+                  </tbody>
+              </table>
+            </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        
+                        <div class="col-md-6">
+                            <span style="font-size: 1.5em">Total Price : </span><label>Price in SGD</label>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <button class="btn btn-primary">Check out <span class="glyphicon glyphicon-ok"></span></button>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+            
+                    <div class="navbar navbar-fixed-bottom"></div>
+        
+
+        
+    <!-- Scripts -->    
+<!--    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="Resources/bootstrap/js/bootstrap.min.js"></script>-->
+<!--    <script src="Resources/bootstrap/js/bootstrap-modal.js"></script>-->
+    </body>
+</html>

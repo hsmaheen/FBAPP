@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <!-- CSS Begins       -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/loading.css">
+        <!--        <link rel="stylesheet" href="css/bootstrap.min.css">-->
+        <!--   End of CSS            -->
+        <!----------Scripts--------->
+        <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>w
+        <script src="js/handlebars-v1.3.0.js" type="text/javascript"></script>
+        <script src="js/jquery.cookie.js" type="text/javascript"></script>
+        <script src="js/handlebars-v1.3.0.js" type="text/javascript"></script>
+        <script src="js/custom.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.js" type="text/javascript"></script>
+        <!--        <script src="js/loading.js" type="text/javascript"></script>-->
+        <!-----End of Scripts---->
+
+        <!----Custom Script----->
+        <script type="text/javascript" >
+            $(function()
+            {
+                //---Loading the Navbar
+                includes("navbartop_Templ", {}, "#navbar");
+                includes("carousel_Templ",{},"#car");
+//                includes("navbar2_Templ", {}, "#test");
+                //---End of Handlebar injection
+
+
+                //--Serialize the form to JSON
+                function registerForm()
+                {
+                    var user = $("#register").toJson();
+                    console.log("---->  " + typeof user);
+
+                    $(this).toAjax("fbapp/User/register", success, fail, JSON.stringify(user), "application/json");// send to servlet
+                    // $(this).toAjax("registeruser", success, fail, user);// send to servlet
+
+                }
+                //------success---------
+                function success(data)
+                {
+                    if (data.error == true)
+                    {
+                        console.log("fail");
+                        //display the error message
+                        includes("errorPane_template", data, "#msgPane");
+                        // setTimeout(function(){window.location.replace("CustomerRegistration.html");},4000);  
+                    }
+                    else
+                    {
+                        includes("thankyou_Templ", {title: "Registration Successfull", message: "Redirecting to login Page..."}, "#register");
+                        setTimeout(function() {
+                            window.location.replace("Login.html");
+                        }, 3000);
+                    }
+
+                }
+                ;
+                function fail()
+                {
+
+
+                }
+                ;
+                //--------------------validation----------------------
+                //
+                $("#register").validate({
+                    rules: {
+                        name: "required",
+                        email: "email",
+                        contact: "required",
+                        username: "required",
+                        address: "required",
+                        password: "required"
+//                        ConfirmPassword: {equalTo: "#password"}
+                    },
+                    submitHandler: registerForm
+                });
+
+                //
+                //--------------end validation------------------------
+
+            });
+        </script>
+        <!----End of Custom Script----->
+
+    </head>
+    <body>
+        <div class="row">
+            <div id="navbar" style="height:100px"></div>
+            <!--            <div id="test" style="height:100px"></div>-->
+        </div>
+        <br>
+        <div id="car"></div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row" style="">
+                <div class="col-lg-6 col-lg-offset-3">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading ">
+                            Registration Form</div>
+                        <div class="panel-body">
+                            <form method="post" action="#" id="register" class="bs-example form-horizontal">
+                                <fieldset>
+
+                                    <div class="form-group">
+                                        <label for="Name" class="col-lg-3 control-label">Name : </label>
+                                        <div class="col-lg-7">
+                                            <input type="text" class="form-control" required name="name" placeholder="Enter your full name" id="NameTxt"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Email" class="col-lg-3 control-label">E-mail Address : </label>
+                                        <div class="col-lg-7">
+                                            <input type="email" class="form-control" required name="email" placeholder="Enter your E-mail Address" id="EmailTxt"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MobileNumber" class="col-lg-3 control-label">Contact : </label>
+                                        <div class="col-lg-7">
+                                            <input type="text" class="form-control" required name="contact" placeholder="Enter your Mobile Number" id="MobileNumberTxt"/>
+                                        </div>
+                                    </div>
+
+                                    <!--                            <div class="form-group">
+                                                                    <label for="DateOfBirth" class="col-lg-3 control-label">Date Of Birth : </label>
+                                                                    <div class="col-lg-7">
+                                                                                                <input type="date" class="form-control" name="dob" id="DateOfBirthTxt"/>
+                                                                        <input type="text" class="form-control" name="dob" id="dob" placeholder="Click to select a date">
+                                                                    </div>
+                                                                </div>-->
+
+                                    <div class="form-group">
+                                        <label for="Address" class="col-lg-3 control-label">Address:</label>
+                                        <div class="col-lg-7">
+                                            <textarea class="form-control" rows="3" id="Address" required name="address"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="form-group">
+                                        <label for="Username" class="col-lg-3 control-label">Username : </label>
+                                        <div class="col-lg-7">
+                                            <input type="text" class="form-control" required name="userid" placeholder="Enter your Username" id="UsernameTxt"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Password" class="col-lg-3 control-label">Password : </label>
+                                        <div class="col-lg-7">
+                                            <input type="password" class="form-control" required name="password" placeholder="Enter your Password" id="PasswordTxt"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ConfirmPassword" class="col-lg-3 control-label">Confirm Password : </label>
+                                        <div class="col-lg-7">
+                                            <input type="password" class="form-control" required name="ConfirmPassword" placeholder="Enter your Password again" id="ConfirmPasswordTxt"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-7 col-lg-offset-3">
+                                            <button type="submit" name="button" value="Register" id="btn_Submit" class="btn btn-primary">Register</button>&nbsp;&nbsp;
+                                            <button type="reset" name="button" value="Reset" id="btn_Reset" class="btn btn-default">Reset</button>&nbsp;&nbsp;
+                                        </div>
+                                    </div>
+                                    <!--                            <div id="modal">
+                                                                    <img src="images/ajax-loader.gif" alt="Loading" />
+                                                                </div>-->
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="panel-footer">
+                            <a href="Login.html">Go back to Login Page</a>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div id="msgPane"></div>
+            </div>
+            <!--        <script>
+                        $(document).ready(function() {
+            
+                            $('#modal').bind("ajaxSend", function() {
+                                $(this).show();
+                            }).bind("ajaxComplete", function() {
+                                $(this).hide();
+                            });
+            
+                        });
+                    </script>-->
+    </body>
+</html>
